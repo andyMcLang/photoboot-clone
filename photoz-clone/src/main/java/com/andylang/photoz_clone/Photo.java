@@ -1,7 +1,11 @@
 package com.andylang.photoz_clone;
 
+import jakarta.validation.constraints.NotEmpty;
+
 public class Photo {
     public String id;
+
+    @NotEmpty
     public String fileName;
 
     public Photo(String id, String fileName) {
