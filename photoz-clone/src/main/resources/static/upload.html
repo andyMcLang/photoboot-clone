@@ -18,8 +18,9 @@
         await fetch("http://localhost:8080/photoz", {
             method: "POST",
             body: formData
-        }).then(result => result.text())
-            .then(text => alert(text));
+        })
+            .then(result => result.json())
+            .then(json => alert(`Uploaded: ${json.fileName}`));
     }
 </script>
 

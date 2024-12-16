@@ -8,17 +8,17 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:63342")
 public class PhotozController {
-    private Map<String, Photo> db = new HashMap<>() {{
-        put("1", new Photo("1", "1.jpg"));
-        put("2", new Photo("2", "2.jpg"));
-        put("3", new Photo("3", "3.jpg"));
-    }};
+
+    private final PhotozService photozService;
+
+    public PhotozController(PhotozService photozService) {
+        this.photozService = photozService;
+    }
+
 
     @GetMapping("/")
     public String index() {
@@ -27,12 +27,12 @@ public class PhotozController {
 
     @GetMapping("/photoz")
     public Collection<Photo> get() {
-        return db.values();
+        return photozService.get();
     }
 
     @GetMapping("/photoz/{id}")
     public Photo get(@PathVariable String id) {
-        Photo photo = db.get(id);
+        Photo photo = photozService.get(id);
         if (photo == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Photo not found");
         return photo;
     }
@@ -40,25 +40,19 @@ public class PhotozController {
     @DeleteMapping("/photoz/{id}")
     public void delete(@PathVariable String id) {
         System.out.println("DELETE request received for id: " + id);
-        System.out.println("Current DB content: " + db);
+        System.out.println("Current DB content: " + photozService);
 
-        Photo photo = db.remove(id);
+        Photo photo = photozService.remove(id);
         if (photo == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Photo not found");
-        System.out.println("Photo deleted: " + photo.getFileName());
-        System.out.println("Remaining photos: " + db.size());
-        if (db.isEmpty()) System.out.println("No more photos");
-        else System.out.println("Remaining photos: " + db.keySet());
-        System.out.println();
+        System.out.println("Photo removed: " + photo);
+        System.out.println("Current DB content: " + photozService);
 
     }
 
     @PostMapping("/photoz")
+    @CrossOrigin(origins = "http://localhost:63342")
     public Photo create(@RequestPart("data") MultipartFile file) throws IOException {
-        Photo photo = new Photo();
-        photo.setId(UUID.randomUUID().toString());
-        photo.setFileName(file.getOriginalFilename());
-        photo.setData(file.getBytes());
-        db.put(photo.getId(), photo);
+        Photo photo = photozService.save(file.getOriginalFilename(), file.getBytes());
         return photo;
     }
 }
