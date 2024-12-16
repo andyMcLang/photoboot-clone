@@ -1,5 +1,7 @@
-package com.andylang.photoz_clone;
+package com.andylang.photoz_clone.web;
 
+import com.andylang.photoz_clone.model.Photo;
+import com.andylang.photoz_clone.service.PhotozService;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

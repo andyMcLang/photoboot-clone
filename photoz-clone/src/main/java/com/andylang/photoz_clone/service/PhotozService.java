@@ -1,5 +1,6 @@
-package com.andylang.photoz_clone;
+package com.andylang.photoz_clone.service;
 
+import com.andylang.photoz_clone.model.Photo;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;

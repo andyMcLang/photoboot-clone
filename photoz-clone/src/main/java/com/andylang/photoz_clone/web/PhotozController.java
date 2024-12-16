@@ -1,6 +1,8 @@
 
-package com.andylang.photoz_clone;
+package com.andylang.photoz_clone.web;
 
+import com.andylang.photoz_clone.model.Photo;
+import com.andylang.photoz_clone.service.PhotozService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;

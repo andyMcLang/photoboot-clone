@@ -1,4 +1,4 @@
-package com.andylang.photoz_clone;
+package com.andylang.photoz_clone.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotEmpty;
