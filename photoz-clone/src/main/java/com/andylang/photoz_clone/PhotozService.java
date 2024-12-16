@@ -11,7 +11,7 @@ import java.util.UUID;
 public class PhotozService {
 
     private final Map<String, Photo> db = new HashMap<>() {{
-        put("1", new Photo("1", "1.jpg"));
+        put("1", new Photo("1", "_1.jpg"));
     }};
 
     public Collection<Photo> get() {
