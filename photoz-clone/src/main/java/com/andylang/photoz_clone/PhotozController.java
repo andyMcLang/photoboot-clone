@@ -52,7 +52,6 @@ public class PhotozController {
     @PostMapping("/photoz")
     @CrossOrigin(origins = "http://localhost:63342")
     public Photo create(@RequestPart("data") MultipartFile file) throws IOException {
-        Photo photo = photozService.save(file.getOriginalFilename(), file.getBytes());
-        return photo;
+        return photozService.save(file.getOriginalFilename(), file.getContentType(), file.getBytes());
     }
 }

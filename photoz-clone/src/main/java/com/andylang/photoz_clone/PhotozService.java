@@ -10,7 +10,7 @@ import java.util.UUID;
 @Service
 public class PhotozService {
 
-    private Map<String, Photo> db = new HashMap<>() {{
+    private final Map<String, Photo> db = new HashMap<>() {{
         put("1", new Photo("1", "1.jpg"));
     }};
 
@@ -26,8 +26,9 @@ public class PhotozService {
         return db.remove(id);
     }
 
-    public Photo save(String fileName, byte[] data) {
+    public Photo save(String fileName, String contentType, byte[] data) {
         Photo photo = new Photo();
+        photo.setContentType(contentType);
         photo.setId(UUID.randomUUID().toString());
         photo.setFileName(fileName);
         photo.setData(data);
