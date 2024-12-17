@@ -44,8 +44,11 @@ cd photoz-clone
 
 ### 2. Run the Application
 Use Maven Wrapper to build and run the application:
+
 ./mvnw clean package
+
 java -jar target/photoz-clone-0.0.1-SNAPSHOT.jar
+
 Alternatively, run the application using your IDE (e.g., IntelliJ or Eclipse).
 
 ---
